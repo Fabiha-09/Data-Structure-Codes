@@ -1,0 +1,72 @@
+Lab6
+
+//Task1
+public class taskone{
+  public static BTNode convertMirror( BTNode head){
+    if ( head == null ){
+     return null;}
+       BTNode a = head.left ;
+       head.left= head.right ; 
+       
+       head.right = head ;
+       
+       head.left =convertMirror( head.left ) ;
+       
+       head.right= convertMirror( head.right ) ;
+       return head; }
+ //Task2
+public class TaskTwo{
+  public static void smallestLevel(BTNode head,int level, Int[] newArr) {
+   if( head == null ){
+     return ; }
+    if( newArr[level] == null  ||  newArr[level]>(Int)head.data ) {
+     newArr[level] = (Int)head.data;}
+    
+     smallestLevel( head.left , newArr ,level+1 );
+     
+     smallestLevel( head.right , newArr ,level+1 ); }}
+
+//Task3
+public class TaskThree{
+   public static Int sumTree(BTNode head) {
+     return helper ( head , 0 ) ;}
+     private static int helper(int level,BTNode a ){
+     if( a == null ) {
+     return 0 ; }
+     
+     int data = (Int)a.elem ;
+      int b = 0 ;
+     
+     if( level == 0) {
+     b = data  ;}
+     
+     else {
+     b = data % level ; }
+      
+     Int lft = helper ( a.lft , level+1) ;
+      Int rht = helper ( a.rht , level+1) ;
+      return b + lft + rht ; }}   
+//Task4
+public class TaskFour {
+  public static void swapChild( BTNode head , int b , int level  ) {
+   if( head == null || level >= b ) {
+      return;}
+     BTNode a = head.lft ;
+     
+     head.lft = head.rht ;
+     
+     head.rht = a;
+     
+     swapChild( head.lft , level + 1 , b ) ;
+     
+     swapChild( head.rht , level+1 , b ) ;  } }
+
+task5
+public class Taskfive{
+ public static Int subtractSummation(BTNode head ){
+  return sum(head.left ) - sum ( head.right ) ; }
+  private static int sum( BTNode dat ){
+   if( dat == null){
+    return 0 ; }
+    return ( Int )dat.elem + ( Int  )sum( dat.left ) + ( Int )sum( dat.right ) ;}
+   }
